@@ -1,9 +1,9 @@
 import React from "react";
 
-const recovery = () => {
+const Recovery = () => {
     return(
-        <div>recovery</div>
+        <div>Recovery</div>
     )
 }
 
-export default recovery;
+export default Recovery;

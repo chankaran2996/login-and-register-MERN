@@ -2,27 +2,43 @@ import './App.css';
 // importing router needs
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 // importing routers
-import username from './components/user';
-import password from './components/password';
+import User from './components/user';
+import Password from './components/password';
 import Register from './components/register';
-import profile from './components/profile';
-import recovery from './components/recovery';
-import reset from './components/reset';
-import pageNotFound from './components/pageNotFound';
+import Profile from './components/profile';
+import Recovery from './components/recovery';
+import Reset from './components/reset';
+import PageNotFound from './components/pageNotFound';
 
 // Adding routers
 const router = createBrowserRouter ([
   {
     path:'/',
-    element:<username></username>
+    element:<User/>
   },
   {
     path:'/register',
-    element:<div>Register Router</div>
+    element:<Register/>
   },
   {
-    path:'/login',
-    element:<div>Login Router</div>
+    path:'/password',
+    element:<Password/>
+  },
+  {
+    path:'/profile',
+    element:<Profile/>
+  },
+  {
+    path:'/recovery',
+    element:<Recovery/>
+  },
+  {
+    path:'/reset',
+    element:<Reset/>
+  },
+  {
+    path:'*',
+    element:<PageNotFound/>
   }
 ])
 

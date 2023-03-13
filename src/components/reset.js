@@ -1,9 +1,9 @@
 import React from "react";
 
-const reset = () => {
+const Reset = () => {
     return(
         <div>reset</div>
     )
 }
 
-export default reset;
+export default Reset;

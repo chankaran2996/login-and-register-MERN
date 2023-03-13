@@ -1,9 +1,9 @@
 import React from "react";
 
-const username = () => {
+const User = () => {
     return(
         <div>Username</div>
     )
 }
 
-export default username;
+export default User;
