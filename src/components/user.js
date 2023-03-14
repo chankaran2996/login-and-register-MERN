@@ -1,8 +1,15 @@
+import autoprefixer from "autoprefixer";
 import React from "react";
 
 const User = () => {
     return(
-        <div>Username</div>
+        <div className="container mx- auto">
+            <div className="flex justify-center items-center h-screen">
+                <div className="title">
+                    <h1>hello</h1>
+                </div>
+            </div>
+        </div>
     )
 }
 
