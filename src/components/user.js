@@ -1,12 +1,16 @@
 import React from "react";
 // importing link form react-router-dom
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+// importing profile image
+import profile from '../assets/profile.png';
+// improting css for user component 
+import styles from "../styles/user.css";
 
 // creating user componet 
 const User = () => {
     return(
         <div className="container mx- auto">
-            <div className="flex h-screen">
+            <div className="flex iterms-center justify-center h-screen">
                 <div className="title flex flex-col items-center">
                     <h4 className="text-5xl font-bold">hello</h4>
                     <span className="py-4 text-xl w-2/3 text-center text-gray-500">
@@ -14,7 +18,7 @@ const User = () => {
                     </span>
                     <form className="py-1">
                         <div className="profile flex justify-center py-5">
-                            <img src="" alt="profile-icon"></img>
+                            <img src={profile} alt="profile-icon"></img>
                         </div>
                         <div className="textbox flex flex-col items-center gap-6">
                             <input type="text" placeholder="username"/>
