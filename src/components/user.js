@@ -5,9 +5,24 @@ import {Link} from "react-router-dom";
 import profile from '../assets/profile.png';
 // improting css for user component 
 import styles from "../styles/User.module.css";
+// improting Toster which use to give some toser like popup or noticfication 
+import { Toast } from "react-hot-toast";
+// importing formik
+import { useFormik } from "formik";
 
 // creating user componet 
 const User = () => {
+    const formik = useFormik({
+        initialVlaues : {
+            username : ""
+        },
+        validateOnBlur : false ,
+        validateOnChange : false,
+        onSubmit : async value => {
+            console.log(value);
+        }
+    })
+
     return(
         <div className="container mx- auto">
             <div className="flex iterms-center justify-center h-screen">
@@ -17,12 +32,12 @@ const User = () => {
                     <span className="py-4 text-xl w-2/3 text-center text-gray-500">
                         Explore More by connecting with us.
                     </span>
-                    <form className="py-1">
+                    <form className="py-1" onSubmit={formik.handleSubmit}>
                         <div className="profile flex justify-center py-5">
                             <img src={profile} className={styles.profile_img} alt="profile-icon"></img>
                         </div>
                         <div className="textbox flex flex-col items-center gap-6">
-                            <input type="text" className={styles.textbox} placeholder="username"/>
+                            <input {...formik.getFieldProps('username')} type="text" className={styles.textbox} placeholder="username"/>
                             <button type="submit" className={styles.btn}>Lets Go</button>
                         </div>
                         <div className="text-center py-4">
