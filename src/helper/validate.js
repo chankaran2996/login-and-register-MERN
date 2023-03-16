@@ -1,10 +1,12 @@
 // improting Toster which use to give some toser like popup or noticfication 
 import { toast } from "react-hot-toast";
 
+// validate login page username and exporting 
+export const userNameValidate = async (value) => {
+    const error = userNameVerify({},value);
 
-
-
-
+    return error;
+}
 
 // Validate username
 const userNameVerify = (error={},value) => {
