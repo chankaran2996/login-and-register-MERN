@@ -12,10 +12,12 @@ import { useFormik } from "formik";
 
 // creating user componet 
 const User = () => {
+    // insitialng formik 
     const formik = useFormik({
-        initialVlaues : {
+        initialValues : {
             username : ""
         },
+        validate : 
         validateOnBlur : false ,
         validateOnChange : false,
         onSubmit : async value => {
