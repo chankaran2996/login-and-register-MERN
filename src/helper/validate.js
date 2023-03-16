@@ -8,11 +8,36 @@ export const userNameValidate = async (value) => {
     return error;
 }
 
+// validate  password and exporting 
+export const passwordValidate = async (value) => {
+    const error = passwordVerify({},value);
+
+    return error;
+}
+
+// Validate password
+const passwordVerify = (error={},value) => {
+
+    const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+
+    if(!value.password){
+        error.password = toast.error('Password Required...!');
+    }else if(value.password.includes(" ")){
+        error.username = toast.error('Wrong password...!');
+    }else if(value.password.length<5){
+        error.username = toast.error('Password must be more than 5 character...!')
+    }else if(!specialChars.test(value.password)){
+        error.username = toast.error('Password must have specialChars...!')
+    }
+    return error;
+
+}
+
 // Validate username
 const userNameVerify = (error={},value) => {
     if(!value.username){
         error.username = toast.error('Username Required...!');
-    }else if(value.username.includes("")){
+    }else if(value.username.includes(" ")){
         error.username = toast.error('Invalid Username...!')
     }
     return error;
