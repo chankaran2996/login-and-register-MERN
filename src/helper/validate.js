@@ -26,7 +26,7 @@ export const conformPasswordValidate = async (value) => {
 const conformPasswordVerify = (error={},value) => {
 
     const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    if(value.password!=value.conform_password){
+    if(value.password!==value.conform_password){
         error.password = toast.error('Password and comform password must be same...!');
     }else if(!value.password){
         error.password = toast.error('Password Required...!');
