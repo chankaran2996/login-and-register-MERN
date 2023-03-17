@@ -15,6 +15,32 @@ export const passwordValidate = async (value) => {
     return error;
 }
 
+// validate  canform password and exporting 
+export const conformPasswordValidate = async (value) => {
+    const error = conformPasswordVerify({},value);
+
+    return error;
+}
+
+// Validate password
+const conformPasswordVerify = (error={},value) => {
+
+    const specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    if(value.password!=value.conform_password){
+        error.password = toast.error('Password and comform password must be same...!');
+    }else if(!value.password){
+        error.password = toast.error('Password Required...!');
+    }else if(value.password.includes(" ")){
+        error.username = toast.error('Password should not have space ...!');
+    }else if(value.password.length<5){
+        error.username = toast.error('Password must be more than 5 character...!')
+    }else if(!specialChars.test(value.password)){
+        error.username = toast.error('Password must have specialChars...!')
+    }
+    return error;
+
+}
+
 // Validate password
 const passwordVerify = (error={},value) => {
 
