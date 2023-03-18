@@ -46,10 +46,13 @@ const Register = () => {
                         </div>
                         <div className="textbox flex flex-col items-center gap-6">
                             <input {...formik.getFieldProps('username')} type="text" className={styles.textbox} placeholder="username"/>
+                            <input {...formik.getFieldProps('username')} type="text" className={styles.textbox} placeholder="username"/>
+                            <input {...formik.getFieldProps('username')} type="text" className={styles.textbox} placeholder="username"/>
+                            <input {...formik.getFieldProps('username')} type="text" className={styles.textbox} placeholder="username"/>
                             <button type="submit" className={styles.btn}>Register</button>
                         </div>
                         <div className="text-center py-4">
-                            <span className="text-gray-500">Not a member?<Link className="text-red-500" to="/register">Register now</Link></span>
+                            <span className="text-gray-500">Already register?<Link className="text-red-500" to="/">Login now</Link></span>
                         </div>
                     </form>
                 </div>
