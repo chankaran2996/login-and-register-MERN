@@ -39,11 +39,14 @@ const Register = () => {
                     </span>
                     <form className="py-1" onSubmit={formik.handleSubmit}>
                         <div className="profile flex justify-center py-5">
+                            <label htmlFor="">
                             <img src={profile} className={styles.profile_img} alt="profile-icon"></img>
+                            </label>
+                            <input type="file" id="profile" name="profile"></input>
                         </div>
                         <div className="textbox flex flex-col items-center gap-6">
                             <input {...formik.getFieldProps('username')} type="text" className={styles.textbox} placeholder="username"/>
-                            <button type="submit" className={styles.btn}>Lets Go</button>
+                            <button type="submit" className={styles.btn}>Register</button>
                         </div>
                         <div className="text-center py-4">
                             <span className="text-gray-500">Not a member?<Link className="text-red-500" to="/register">Register now</Link></span>
