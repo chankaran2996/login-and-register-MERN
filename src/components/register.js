@@ -11,10 +11,15 @@ import {  Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
 // importing userNameValidate from validate.js file for toaster and user name valdidation 
 import { userNameValidate } from "../helper/validate";
+// importing usestate
+import { useState } from "react";
+// improting convertToBase64 to convert image 
+import convertToBase64 from "../helper/convert";
 
 const Register = () => {
-
-    // insitialng formik 
+    // insitialing state
+    const [file,setfile]= useState();
+    // insitialing formik 
     const formik = useFormik({
         initialValues : {
             username : "",
@@ -29,6 +34,12 @@ const Register = () => {
             console.log(value);
         }
     })
+
+    // formik does not support file type for that we use 
+    const onUpload = async e =>{
+        const base64 = await convertToBase64();
+        setfile(base64);
+    }
 
     return(
         <div className="container mx- auto">
