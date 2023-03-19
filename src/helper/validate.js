@@ -8,6 +8,14 @@ export const userNameValidate = async (value) => {
     return error;
 }
 
+// validate register form
+export const registerValidation = async (value) => {
+    const errors = userNameVerify({}, value);
+    conformPasswordVerify(errors, value);
+    emailVerify(errors, value);
+
+    return errors;
+}
 // validate  password and exporting 
 export const passwordValidate = async (value) => {
     const error = passwordVerify({},value);
@@ -68,4 +76,17 @@ const userNameVerify = (error={},value) => {
     }
     return error;
 
+}
+
+// validating email
+const  emailVerify = (error ={}, value) => {
+    if(!value.email){
+        error.email = toast.error("Email Required...!");
+    }else if(value.email.includes(" ")){
+        error.email = toast.error("Wrong Email...!")
+    }else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value.email)){
+        error.email = toast.error("Invalid email address...!")
+    }
+
+    return error;
 }

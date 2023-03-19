@@ -10,7 +10,7 @@ import {  Toaster } from "react-hot-toast";
 // importing formik
 import { useFormik } from "formik";
 // importing userNameValidate from validate.js file for toaster and user name valdidation 
-import { userNameValidate } from "../helper/validate";
+import { registerValidation } from "../helper/validate";
 // importing usestate
 import { useState } from "react";
 // improting convertToBase64 to convert image 
@@ -27,7 +27,7 @@ const Register = () => {
             password : "",
             conform_password : ""
         },
-        validate : userNameValidate,
+        validate : registerValidation,
         validateOnBlur : false ,
         validateOnChange : false,
         onSubmit : async value => {
