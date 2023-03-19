@@ -17,7 +17,10 @@ const Register = () => {
     // insitialng formik 
     const formik = useFormik({
         initialValues : {
-            username : ""
+            username : "",
+            email:"",
+            password : "",
+            conform_password : ""
         },
         validate : userNameValidate,
         validateOnBlur : false ,
@@ -39,16 +42,16 @@ const Register = () => {
                     </span>
                     <form className="py-1" onSubmit={formik.handleSubmit}>
                         <div className="profile flex justify-center py-5">
-                            <label htmlFor="">
-                            <img src={profile} className={styles.profile_img} alt="profile-icon"></img>
+                            <label htmlFor="profile">
+                                <img src={profile} className={styles.profile_img} alt="profile-icon"></img>
                             </label>
                             <input type="file" id="profile" name="profile"></input>
                         </div>
                         <div className="textbox flex flex-col items-center gap-6">
                             <input {...formik.getFieldProps('username')} type="text" className={styles.textbox} placeholder="username"/>
-                            <input {...formik.getFieldProps('username')} type="text" className={styles.textbox} placeholder="username"/>
-                            <input {...formik.getFieldProps('username')} type="text" className={styles.textbox} placeholder="username"/>
-                            <input {...formik.getFieldProps('username')} type="text" className={styles.textbox} placeholder="username"/>
+                            <input {...formik.getFieldProps('email')} type="email" className={styles.textbox} placeholder="Email"/>
+                            <input {...formik.getFieldProps('password')} type="password" className={styles.textbox} placeholder="password"/>
+                            <input {...formik.getFieldProps('conform_password')} type="password" className={styles.textbox} placeholder="comform password"/>
                             <button type="submit" className={styles.btn}>Register</button>
                         </div>
                         <div className="text-center py-4">
