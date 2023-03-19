@@ -31,13 +31,14 @@ const Register = () => {
         validateOnBlur : false ,
         validateOnChange : false,
         onSubmit : async value => {
+            value = await Object.assign(value,{profile:file||''})
             console.log(value);
         }
     })
 
     // formik does not support file type for that we use 
     const onUpload = async e =>{
-        const base64 = await convertToBase64();
+        const base64 = await convertToBase64(e.target.files[0]);
         setfile(base64);
     }
 
@@ -54,9 +55,9 @@ const Register = () => {
                     <form className="py-1" onSubmit={formik.handleSubmit}>
                         <div className="profile flex justify-center py-5">
                             <label htmlFor="profile">
-                                <img src={profile} className={styles.profile_img} alt="profile-icon"></img>
+                                <img src={file||profile} className={styles.profile_img} alt="profile-icon"></img>
                             </label>
-                            <input type="file" id="profile" name="profile"></input>
+                            <input onChange={onUpload} type="file" id="profile" name="profile"></input>
                         </div>
                         <div className="textbox flex flex-col items-center gap-6">
                             <input {...formik.getFieldProps('username')} type="text" className={styles.textbox} placeholder="username"/>
