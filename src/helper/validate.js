@@ -8,6 +8,12 @@ export const userNameValidate = async (value) => {
     return error;
 }
 
+//validate profile page 
+export const  profileValidation = async (value) => {
+    const errors = emailVerify({}, value);
+    return errors;
+}
+
 // validate register form
 export const registerValidation = async (value) => {
     const errors = userNameVerify({}, value);
