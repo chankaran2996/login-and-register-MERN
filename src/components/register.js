@@ -61,7 +61,7 @@ const Register = () => {
                         </div>
                         <div className="textbox flex flex-col items-center gap-6">
                             <input {...formik.getFieldProps('username')} type="text" className={styles.textbox} placeholder="username"/>
-                            <input {...formik.getFieldProps('email')} type="email" className={styles.textbox} placeholder="Email"/>
+                            <input {...formik.getFieldProps('email')} type="text" className={styles.textbox} placeholder="Email"/>
                             <input {...formik.getFieldProps('password')} type="password" className={styles.textbox} placeholder="password"/>
                             <input {...formik.getFieldProps('conform_password')} type="password" className={styles.textbox} placeholder="comform password"/>
                             <button type="submit" className={styles.btn}>Register</button>
