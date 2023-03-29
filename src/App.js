@@ -9,6 +9,7 @@ import Profile from './components/profile';
 import Recovery from './components/recovery';
 import Reset from './components/reset';
 import PageNotFound from './components/pageNotFound';
+import Workbench from './components/workbench';
 
 // Adding routers
 const router = createBrowserRouter ([
@@ -35,6 +36,10 @@ const router = createBrowserRouter ([
   {
     path:'/reset',
     element:<Reset/>
+  },
+  {
+    path:'/workbench',
+    element:<Workbench/>
   },
   {
     path:'*',
