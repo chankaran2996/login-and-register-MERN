@@ -16,8 +16,10 @@ import { useState } from "react";
 // improting convertToBase64 to convert image
 import convertToBase64 from "../helper/convert";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate();
   // insitialing state
   const [file, setfile] = useState();
   // insitialing formik
@@ -37,10 +39,11 @@ const Register = () => {
       console.log(value);
 
       axios
-        .post("http://localhost:8000/api/register", value)
+        .post(`${process.env.REACT_APP_api}/api/register`, value)
         .then((response) => {
           console.log(response.data);
         });
+      navigate("/password");
     },
   });
 
