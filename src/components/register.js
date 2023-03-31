@@ -43,7 +43,7 @@ const Register = () => {
         .then((response) => {
           console.log(response.data);
         });
-      navigate("/password");
+      navigate("/");
     },
   });
 

@@ -9,33 +9,30 @@ import styles from "../styles/User.module.css";
 import { Toaster } from "react-hot-toast";
 // importing formik
 import { useFormik } from "formik";
-// importing passwordValidate from validate.js file for toaster and password valdidation
-import { passwordValidate } from "../helper/validate";
+// importing userNameValidate from validate.js file for toaster and user name valdidation
+import { userNameValidate } from "../helper/validate";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useToken } from "../contextApi/userDetails.js";
 
+// creating user componet
 const User = () => {
-  const navigate = useNavigate();
-  const { updateToken } = useToken();
   // insitialng formik
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      username: "",
     },
-    validate: passwordValidate,
+    validate: userNameValidate,
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async (value) => {
       console.log(value);
-      axios
-        .post(`${process.env.REACT_APP_api}/api/login`, value)
-        .then((response) => {
-          console.log(response.data);
-          updateToken(response.data.token);
-        });
-      navigate("/workbench");
+      navigate("/password");
+      //   axios
+      //     .post(`${process.env.REACT_APP_api}/api/login`, value)
+      //     .then((response) => {
+      //       console.log(response.data);
+      //     });
     },
   });
 
@@ -59,36 +56,20 @@ const User = () => {
               </div>
               <div className="textbox flex flex-col items-center gap-6">
                 <input
-                  {...formik.getFieldProps("email")}
-                  type="email"
+                  {...formik.getFieldProps("name")}
+                  type="text"
                   className={styles.textbox}
-                  placeholder="email"
+                  placeholder="username"
                 />
-                <div className="textbox flex flex-col items-center gap-6">
-                  <input
-                    {...formik.getFieldProps("password")}
-                    type="password"
-                    className={styles.textbox}
-                    placeholder="password"
-                  />
-                  <button type="submit" className={styles.btn}>
-                    Sign in
-                  </button>
-                </div>
+                <button type="submit" className={styles.btn}>
+                  Lets Go
+                </button>
               </div>
               <div className="text-center py-4">
                 <span className="text-gray-500">
                   Not a member?
                   <Link className="text-red-500" to="/register">
                     Register now
-                  </Link>
-                </span>
-              </div>
-              <div className="text-center py-4">
-                <span className="text-gray-500">
-                  Forget password?
-                  <Link className="text-red-500" to="/recovery">
-                    Recover now
                   </Link>
                 </span>
               </div>
