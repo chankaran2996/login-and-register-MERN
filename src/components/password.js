@@ -32,7 +32,7 @@ const Password = () => {
         .then((response) => {
           console.log(response.data);
         });
-      navigate("/profile");
+      navigate("/workbench");
     },
   });
 
