@@ -24,23 +24,24 @@ const Workbench = () => {
     initialValues: {
       username: "",
     },
-    validate: userNameValidate,
+    // validate: userNameValidate,
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async (value) => {
       console.log(token, value);
       // navigate("/password");
-      axios
-        .get(`${process.env.REACT_APP_api}/db/mysql/qustion`, {
-          headers: {
-            Authorization: "Bearer " + token,
-            "Content-Type": "application/json",
-          },
-          params: {
-            email: "chann@gmail.com",
-            qustiontitle: "Get the list of names below 18 age",
-          },
-        })
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + token // Replace 'token' with your actual token
+        }
+      }
+      axios.post(`${process.env.REACT_APP_api}/db/mysql/qustion`,   
+    {
+        email: "chann@gmail.com",
+        qustiontitle: "Get the list of names below 18 age"
+      },config
+    )
         .then((response) => {
           console.log(response.data);
         });
