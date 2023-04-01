@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast";
 
 // validate login page username and exporting
 export const userNameValidate = async (value) => {
-  const error = userNameVerify({}, value);
+  const error = emailVerify({}, value);
 
   return error;
 };
