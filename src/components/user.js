@@ -13,11 +13,12 @@ import { useFormik } from "formik";
 import { passwordValidate } from "../helper/validate";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useToken } from "../contextApi/userDetails.js";
+import { useToken, useEmail } from "../contextApi/userDetails.js";
 
 const User = () => {
   const navigate = useNavigate();
   const { updateToken } = useToken();
+  const { updateEmail } = useEmail();
   // insitialng formik
   const formik = useFormik({
     initialValues: {
@@ -34,6 +35,7 @@ const User = () => {
         .then((response) => {
           console.log(response.data);
           updateToken(response.data.token);
+          updateEmail(response.data.email);
         });
       navigate("/workbench");
     },

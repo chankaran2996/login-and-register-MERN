@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState } from "react";
 // importing link form react-router-dom
 import { Link } from "react-router-dom";
 // importing profile image
@@ -13,82 +13,85 @@ import { useFormik } from "formik";
 import { userNameValidate } from "../helper/validate";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useToken } from "../contextApi/userDetails.js";
+import { useToken, useEmail } from "../contextApi/userDetails.js";
+import QuestionBox from "./QuestionBox";
 
 // creating user componet
 const Workbench = () => {
   const { token } = useToken();
+  const { email } = useEmail();
+
+  const [question, setQuestion] = useState("");
+  const [explanation, setExplanation] = useState([]);
   // insitialng formik
   const navigate = useNavigate();
-  const formik = useFormik({
-    initialValues: {
-      username: "",
-    },
-    // validate: userNameValidate,
-    validateOnBlur: false,
-    validateOnChange: false,
-    onSubmit: async (value) => {
-      console.log(token, value);
-      // navigate("/password");
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + token // Replace 'token' with your actual token
-        }
-      }
-      axios.post(`${process.env.REACT_APP_api}/db/mysql/qustion`,   
-    {
-        email: "chann@gmail.com",
-        qustiontitle: "Get the list of names below 18 age"
-      },config
-    )
-        .then((response) => {
-          console.log(response.data);
-        });
-    },
-  });
+  const showExplanation = () => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token, // Replace 'token' with your actual token
+      },
+    };
+    axios
+      .post(
+        `${process.env.REACT_APP_api}/db/mysql/qustion`,
+        {
+          email: email,
+          qustiontitle: "Get the list of names below 18 age",
+        },
+        config
+      )
+      .then((response) => {
+        console.log(response.data);
+
+        var array = response.data.viewQustion.explanation.split("-");
+
+        setExplanation(array);
+      });
+  };
+  const handleClick = () => {
+    console.log(email);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token, // Replace 'token' with your actual token
+      },
+    };
+    axios
+      .post(
+        `${process.env.REACT_APP_api}/db/mysql/qustion`,
+        {
+          email: email,
+          qustiontitle: "Get the list of names below 18 age",
+        },
+        config
+      )
+      .then((response) => {
+        console.log(response.data);
+        setQuestion(response.data.viewQustion.qustiontitle);
+      });
+  };
 
   return (
-    <div className="container mx- auto">
-      <Toaster position="top-right" reverseOrder={false} />
-      <div className="flex iterms-center justify-center h-screen">
-        <div className={styles.glass}>
-          <div className="title flex flex-col items-center">
-            <h4 className="text-5xl font-bold">Hello!</h4>
-            <span className="py-4 text-xl w-2/3 text-center text-gray-500">
-              Explore More by connecting with us.
-            </span>
-            <form className="py-1" onSubmit={formik.handleSubmit}>
-              <div className="profile flex justify-center py-5">
-                <img
-                  src={profile}
-                  className={styles.profile_img}
-                  alt="profile-icon"
-                ></img>
-              </div>
-              <div className="textbox flex flex-col items-center gap-6">
-                <input
-                  {...formik.getFieldProps("name")}
-                  type="text"
-                  className={styles.textbox}
-                  placeholder="username"
-                />
-                <button type="submit" className={styles.btn}>
-                  Lets Go
-                </button>
-              </div>
-              <div className="text-center py-4">
-                <span className="text-gray-500">
-                  Not a member?
-                  <Link className="text-red-500" to="/register">
-                    Register now
-                  </Link>
-                </span>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+    <div>
+      <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded-r-lg"
+        onClick={handleClick}
+      >
+        Click here to view the question
+      </button>
+      <QuestionBox question={question}></QuestionBox>
+      <span>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded-r-lg"
+          onClick={showExplanation}
+        >
+          Click here to see the explanation
+        </button>
+        {explanation.map((val) => {
+          return <QuestionBox question={val}></QuestionBox>;
+        })}
+      </span>
     </div>
   );
 };

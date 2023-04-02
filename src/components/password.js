@@ -39,7 +39,7 @@ const Password = () => {
   return (
     <div className="container mx- auto">
       <Toaster position="top-right" reverseOrder={false} />
-      <div className="flex iterms-center justify-center h-screen">
+      <div className="flex items-center justify-center h-screen">
         <div className={styles.glass}>
           <div className="title flex flex-col items-center">
             <h4 className="text-5xl font-bold">Hello!</h4>
