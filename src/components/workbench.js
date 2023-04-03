@@ -8,7 +8,7 @@ import styles from "../styles/User.module.css";
 // improting Toster which use to give some toser like popup or noticfication
 import { Toaster } from "react-hot-toast";
 // importing formik
-import { useFormik } from "formik";
+import { Formik, Form, Field } from "formik";
 // importing userNameValidate from validate.js file for toaster and user name valdidation
 import { userNameValidate } from "../helper/validate";
 import axios from "axios";
@@ -98,6 +98,55 @@ const Workbench = () => {
         {explanation.map((val) => {
           return <QuestionBox question={val}></QuestionBox>;
         })}
+      </div>
+
+      <div className="flex items-center justify-center h-full py-11">
+        <Formik
+          initialValues={{ solution: "" }}
+          onSubmit={async (value) => {
+            console.log(value);
+
+            const config = {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token, // Replace 'token' with your actual token
+              },
+            };
+            axios
+              .post(
+                `${process.env.REACT_APP_api}/db/mysql/validate`,
+                {
+                  email: email,
+                  qustiontitle: "Get the list of names below 18 age",
+                  solution: value,
+                },
+                config
+              )
+              .then((response) => {
+                console.log(response.data);
+              });
+          }}
+        >
+          {({ isSubmitting }) => (
+            <Form>
+              <Field
+                type="text"
+                name="solution"
+                placeholder="solution"
+                className="block text-gray-700 font-bold mb-2 w-full"
+              />
+              <div className="py-4">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4"
+                >
+                  Submit
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </div>
     </>
   );
