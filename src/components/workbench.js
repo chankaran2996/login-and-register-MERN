@@ -118,7 +118,7 @@ const Workbench = () => {
                 {
                   email: email,
                   qustiontitle: "Get the list of names below 18 age",
-                  solution: value,
+                  solution: value.solution,
                 },
                 config
               )
