@@ -73,26 +73,33 @@ const Workbench = () => {
   };
 
   return (
-    <div>
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded-r-lg"
-        onClick={handleClick}
-      >
-        Click here to view the question
-      </button>
-      <QuestionBox question={question}></QuestionBox>
-      <span>
+    <>
+      <div className="flex items-center justify-center h-full py-11">
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded-r-lg "
+          onClick={handleClick}
+        >
+          Click here to view the question
+        </button>
+      </div>
+      <div>
+        <QuestionBox question={question}></QuestionBox>
+      </div>
+
+      <div className="flex items-center justify-center h-full py-11">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold px-4 rounded-r-lg"
           onClick={showExplanation}
         >
           Click here to see the explanation
         </button>
+      </div>
+      <div>
         {explanation.map((val) => {
           return <QuestionBox question={val}></QuestionBox>;
         })}
-      </span>
-    </div>
+      </div>
+    </>
   );
 };
 
