@@ -1,0 +1,18 @@
+.careerForm-container{
+    display: flex;
+    flex-direction: column;
+    width: 550px;
+  font-size: 18px;
+    margin: 50px auto;
+    gap: 10px;
+    color: blue;
+}
+.careerForm-container h5{
+    text-align: center;
+}
+
+.careerForm-form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

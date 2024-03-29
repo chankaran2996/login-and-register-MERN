@@ -10,6 +10,7 @@ import Recovery from './components/recovery';
 import Reset from './components/reset';
 import PageNotFound from './components/pageNotFound';
 import Workbench from './components/workbench';
+import CareerForm from './components/Form';
 
 // Adding routers
 const router = createBrowserRouter ([
@@ -40,6 +41,10 @@ const router = createBrowserRouter ([
   {
     path:'/workbench',
     element:<Workbench/>
+  },
+  {
+    path:'/form',
+    element:<CareerForm/>
   },
   {
     path:'*',
