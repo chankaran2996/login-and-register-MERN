@@ -134,6 +134,7 @@ const Workbench = () => {
                 name="solution"
                 placeholder="solution"
                 className="block text-gray-700 font-bold mb-2 w-full"
+                size="50"
               />
               <div className="py-4">
                 <button
